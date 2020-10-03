@@ -13,4 +13,5 @@ sonic
 line1
 line2
 oled
+irr
 i2c
