@@ -1,0 +1,42 @@
+#A Python script to test motors, stepper motor
+#********BEFORE RUNNING THIS, MUST sudo pigpiod !!******
+#Can automate this with sudo systemctl enable pigpiod (or disable)
+
+import pigpio
+import time
+
+#Second section: test buttons and buzzer
+print("Press buttons for tones, connect serial cable for messages")
+print ("Press both buttons at the same time to end programs")
+
+p1 = pigpio.pi() #use defaults
+#if not p1.connected:
+#	exit()
+
+#GPIO19 = PB2, GPIO26 = PB1, GPIO13 = Amplifier, GPIO16 = Buzzer
+p1.set_mode(19, pigpio.INPUT)
+p1.set_mode(26, pigpio.INPUT)
+p1.set_mode(13, pigpio.OUTPUT)
+p1.set_mode(16, pigpio.OUTPUT)
+
+#Activate amplifier, with audio input this will play
+p1.write(13,1)
+
+while True:
+	if p1.read(19) == 0:
+		p1.set_PWM_frequency(16,2000)
+		p1.set_PWM_dutycycle(16,128)
+		time.sleep(0.3)
+		p1.set_PWM_dutycycle(16,0)
+	if p1.read(26) == 0:
+		p1.set_PWM_frequency(16,1000)
+		p1.set_PWM_dutycycle(16,128)
+		time.sleep(0.3)
+		p1.set_PWM_dutycycle(16,0)
+	if p1.read(19) == 0 and p1.read(26) == 0:
+		break
+
+p1.set_PWM_dutycycle(16,0)
+p1.write(13,0)
+p1.stop()
+
