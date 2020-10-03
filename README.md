@@ -9,7 +9,6 @@ motor1
 motor2
 pixel
 stepper
-stepper2
 sonic
 line1
 line2
