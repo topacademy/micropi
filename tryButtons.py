@@ -1,20 +1,10 @@
-import RPi.GPIO as GPIO
-from time import sleep
+from micropiV2 import Button
 
-GPIO.setmode(GPIO.BOARD)
+def button1(channel):
+    print("Button 1 " + str(channel))
 
-sleepTime = .1
+def button2(channel):
+    print("Button 2 " + str(channel))
 
-buttonPin1 = 37
-buttonPin2 = 35
 
-GPIO.setup(buttonPin1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(buttonPin2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-while True:
-	if(GPIO.input(buttonPin1) == 0):
-		print("Button 1 Pressed")
-		sleep(sleepTime)
-	if(GPIO.input(buttonPin2) == 0):
-		print("Button 2 Pressed")
-		sleep(sleepTime)
-
+b = Button(button1, button2)

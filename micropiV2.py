@@ -313,11 +313,11 @@ class Buzzer:
         self.buzzer.set_mode(16, pigpio.OUTPUT)
 
     def set_buzzer(self, freq, duty):
-        self.buzzer.setPWM_frequency(16, freq)
-        self.buzzer.setPWM_dutycycle(16, duty)
+        self.buzzer.set_PWM_frequency(16, freq)
+        self.buzzer.set_PWM_dutycycle(16, duty)
 
-    def stop_buzzer():
-        self.buzzer.ser_PWM_dutycycle(16,0)
+    def stop_buzzer(self):
+        self.buzzer.set_PWM_dutycycle(16,0)
         self.buzzer.stop()
 
 
@@ -347,21 +347,22 @@ class RGB:
 
 class Button:
 
-    def pb1_callback(channel):
+    def pb1_callback(self, channel):
         print("Button 1 was pressed!")
-    def pb2_callback(channel):
+    def pb2_callback(self, channel):
         print("Button 2 was pressed!")
-    pb1 = 37
-    pb2 = 35
-    #GPIO.setwarnings(False) # Ignore warning for now
-    #GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
-    GPIO.setup(pb1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 37 to be an input pin and set initial value to be pulled$GPIO.setup(PB2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(pb2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.add_event_detect(pb1,GPIO.RISING,callback=pb1_callback) # Setup event on pin 37 rising edge
-    GPIO.add_event_detect(pb2,GPIO.RISING,callback=pb2_callback)
-    message = input("Press enter to quit\n\n") # Run until someone presses enter
-
-    GPIO.cleanup() # Clean up
+    def __init__(self, button1, button2):
+        pb1 = 37
+        pb2 = 35
+        #GPIO.setwarnings(False) # Ignore warning for now
+        #GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
+        GPIO.setup(pb1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 37 to be an input pin and set initial value to be pulled$GPIO.setup(PB2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(pb2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(pb1,GPIO.RISING,callback=button1) # Setup event on pin 37 rising edge
+        GPIO.add_event_detect(pb2,GPIO.RISING,callback=button2)
+        message = input("Press enter to quit\n\n") # Run until someone presses enter
+    def __del__(self):
+        GPIO.cleanup() # Clean up
 
 if __name__ == "__main__":
     rgb=RGB()
