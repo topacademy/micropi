@@ -14,7 +14,7 @@ from time import sleep
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-class Motor: 
+class Motor:
 
 
     # Class to handle interaction with the motor pins
@@ -27,27 +27,28 @@ class Motor:
     # identifying the pins to which the motor is connected.
     # config = int defining which pins control "forward" and "backward" movement.
 
-    motorpins = {"MOTOR4":{"config":{1:{"e":32,"f":24,"r":26},2:{"e":32,"f":26,"r":24}},"arrow":1},
-                 "MOTOR3":{"config":{1:{"e":19,"f":21,"r":23},2:{"e":19,"f":23,"r":21}}, "arrow":2},
-                 "MOTOR2":{"config":{1:{"e":22,"f":18,"r":16},2:{"e":22,"f":16,"r":18}}, "arrow":3},
-                 "MOTOR1":{"config":{1:{"e":11,"f":15,"r":13},2:{"e":11,"f":13,"r":15}},"arrow":4}}
+    motorpins = {"MOTOR4":{"config":{1:{"e":32, "f":24, "r":26}, 2:{"e":32, "f":26, "r":24}}, "arrow":1},
+                 "MOTOR3":{"config":{1:{"e":19, "f":21, "r":23}, 2:{"e":19, "f":23, "r":21}}, "arrow":2},
+                 "MOTOR2":{"config":{1:{"e":22, "f":18, "r":16}, 2:{"e":22, "f":16, "r":18}}, "arrow":3},
+                 "MOTOR1":{"config":{1:{"e":11, "f":15, "r":13}, 2:{"e":11, "f":13, "r":15}}, "arrow":4}}
 
 
-    def __init__(self, motor, config): 
+    def __init__(self, motor, config):
 
         self.testMode = False
         self.pins = self.motorpins[motor]["config"][config]
-        GPIO.setup(self.pins['e'],GPIO.OUT)
-        GPIO.setup(self.pins['f'],GPIO.OUT)
-        GPIO.setup(self.pins['r'],GPIO.OUT)
-        self.PWM = GPIO.PWM(self.pins['e'], 50)  # 50Hz frequency
+        GPIO.setup(self.pins['e'], GPIO.OUT)
+        GPIO.setup(self.pins['f'], GPIO.OUT)
+        GPIO.setup(self.pins['r'], GPIO.OUT)
+        # 50 Hz frequency
+        self.PWM = GPIO.PWM(self.pins['e'], 50)
         self.PWM.start(0)
-        GPIO.output(self.pins['e'],GPIO.HIGH)
-        GPIO.output(self.pins['f'],GPIO.LOW)
-        GPIO.output(self.pins['r'],GPIO.LOW)
+        GPIO.output(self.pins['e'], GPIO.HIGH)
+        GPIO.output(self.pins['f'], GPIO.LOW)
+        GPIO.output(self.pins['r'], GPIO.LOW)
 
 
-    def test(self, state): 
+    def test(self, state):
 
         # Puts the motor into test mode
         # When in test mode the Arrow associated with the motor receives power on "forward"
@@ -57,51 +58,51 @@ class Motor:
         self.testMode = state
 
 
-    def forward(self, speed): 
+    def forward(self, speed):
 
         # Starts the motor turning in its configured "forward" direction.
         # Arguments:
         # speed = Duty Cycle Percentage from 0 to 100.
         # 0 - stop and 100 - maximum speed
         print("Forward")
-        if self.testMode: 
+        if self.testMode:
             print("arrow")
         else:
             self.PWM.ChangeDutyCycle(speed)
-            GPIO.output(self.pins['f'],GPIO.HIGH)
-            GPIO.output(self.pins['r'],GPIO.LOW)
+            GPIO.output(self.pins['f'], GPIO.HIGH)
+            GPIO.output(self.pins['r'], GPIO.LOW)
 
 
-    def reverse(self,speed): 
+    def reverse(self,speed):
 
         # Starts the motor turning in its configured "reverse" direction.
         # Arguments:
         # speed = Duty Cycle Percentage from 0 to 100.
         # 0 - stop and 100 - maximum speed
         print("Reverse")
-        if self.testMode: 
+        if self.testMode:
             print("Arrow")
         else:
             self.PWM.ChangeDutyCycle(speed)
-            GPIO.output(self.pins['f'],GPIO.LOW)
-            GPIO.output(self.pins['r'],GPIO.HIGH)
+            GPIO.output(self.pins['f'], GPIO.LOW)
+            GPIO.output(self.pins['r'], GPIO.HIGH)
 
 
-    def stop(self): 
+    def stop(self):
 
         # Stops power to the motor
         print("Stop")
         self.PWM.ChangeDutyCycle(0)
-        GPIO.output(self.pins['f'],GPIO.LOW)
-        GPIO.output(self.pins['r'],GPIO.LOW)
+        GPIO.output(self.pins['f'], GPIO.LOW)
+        GPIO.output(self.pins['r'], GPIO.LOW)
 
 
-    def speed(self): 
+    def speed(self):
 
         #Control Speed of Motor
         pass
 
-class LinkedMotors: 
+class LinkedMotors:
 
 
         # Links 2 or more motors together as a set.
@@ -112,15 +113,15 @@ class LinkedMotors:
         # *motors = a list of Motor objects
 
 
-    def __init__(self, *motors): 
+    def __init__(self, *motors):
 
         self.motor = []
-        for i in motors: 
+        for i in motors:
             print(i.pins)
             self.motor.append(i)
 
 
-    def forward(self,speed): 
+    def forward(self,speed):
 
         # Starts the motor turning in its configured "forward" direction.
         # Arguments:
@@ -131,7 +132,7 @@ class LinkedMotors:
             self.motor[i].forward(speed)
 
 
-    def reverse(self,speed): 
+    def reverse(self,speed):
 
         # Starts the motor turning in its configured "reverse" direction.
         # Arguments:
@@ -142,7 +143,7 @@ class LinkedMotors:
             self.motor[i].reverse(speed)
 
 
-    def stop(self): 
+    def stop(self):
 
         # Stops power to the motor
 
@@ -150,7 +151,7 @@ class LinkedMotors:
             self.motor[i].stop()
 
 
-class Stepper: 
+class Stepper:
 
 
     # Defines stepper motor pins on the MotorShield
@@ -160,26 +161,26 @@ class Stepper:
     stepperpins = {"STEPPER1":{"en1":11, "en2":22, "c1":13,"c2":15, "c3":18, "c4":16},
                    "STEPPER2":{"en1":19, "en2":32, "c1":21,"c2":23, "c3":24, "c4":26}}
 
-    def __init__(self, motor): 
+    def __init__(self, motor):
         self.config = self.stepperpins[motor]
-        GPIO.setup(self.config["en1"],GPIO.OUT)
-        GPIO.setup(self.config["en2"],GPIO.OUT)
-        GPIO.setup(self.config["c1"],GPIO.OUT)
-        GPIO.setup(self.config["c2"],GPIO.OUT)
-        GPIO.setup(self.config["c3"],GPIO.OUT)
-        GPIO.setup(self.config["c4"],GPIO.OUT)
-        GPIO.output(self.config["en1"],GPIO.HIGH)
-        GPIO.output(self.config["en2"],GPIO.HIGH)
-        GPIO.output(self.config["c1"],GPIO.LOW)
-        GPIO.output(self.config["c2"],GPIO.LOW)
-        GPIO.output(self.config["c3"],GPIO.LOW)
-        GPIO.output(self.config["c4"],GPIO.LOW)
+        GPIO.setup(self.config["en1"], GPIO.OUT)
+        GPIO.setup(self.config["en2"], GPIO.OUT)
+        GPIO.setup(self.config["c1"], GPIO.OUT)
+        GPIO.setup(self.config["c2"], GPIO.OUT)
+        GPIO.setup(self.config["c3"], GPIO.OUT)
+        GPIO.setup(self.config["c4"], GPIO.OUT)
+        GPIO.output(self.config["en1"], GPIO.HIGH)
+        GPIO.output(self.config["en2"], GPIO.HIGH)
+        GPIO.output(self.config["c1"], GPIO.LOW)
+        GPIO.output(self.config["c2"], GPIO.LOW)
+        GPIO.output(self.config["c3"], GPIO.LOW)
+        GPIO.output(self.config["c4"], GPIO.LOW)
 
 
-    def setStep(self, w1, w2, w3, w4): 
+    def setStep(self, w1, w2, w3, w4):
 
     # Set steps of Stepper Motor
-    # Arguments                                                                                           # Arguments:
+    # Arguments
     # w1,w2,w3,w4 = Wire of Stepper Motor
 
 
@@ -189,7 +190,7 @@ class Stepper:
         GPIO.output(self.config["c4"], w4)
 
 
-    def forward(self, delay, steps): 
+    def forward(self, delay, steps):
 
     # Rotate Stepper motor in forward direction
     # delay = time between steps in milliseconds                                                                                                                            Arguments:                                                                                                              delay = time between steps in miliseconds
@@ -206,7 +207,7 @@ class Stepper:
             time.sleep(delay)
 
 
-    def backward(self, delay, steps): 
+    def backward(self, delay, steps):
 
     # Rotate Stepper motor in backward direction
     # Arguments:
@@ -223,7 +224,7 @@ class Stepper:
             self.setStep(1, 0, 0, 0)
             time.sleep(delay)
 
-    def stop(self): 
+    def stop(self):
 
         # Stops power to the motor
 
@@ -234,7 +235,7 @@ class Stepper:
         GPIO.output(self.config['c4'],GPIO.LOW)
 
 
-class Sensor: 
+class Sensor:
 
 
     # Defines a sensor connected to the sensor pins on the MotorShield
@@ -247,7 +248,7 @@ class Sensor:
     Triggered = False
 
 
-    def iRCheck(self): 
+    def iRCheck(self):
 
         input_state = GPIO.input(self.config["echo"])
         if input_state is True:
@@ -257,7 +258,7 @@ class Sensor:
             self.Triggered = False
 
 
-    def sonicCheck(self): 
+    def sonicCheck(self):
 
         # print("SonicCheck has been triggered")
         time.sleep(0.333)
@@ -284,7 +285,7 @@ class Sensor:
                   "ULTRASONIC":{"trigger":29, "echo": 31, "check":sonicCheck}}
 
 
-    def trigger(self): 
+    def trigger(self):
 
         # Executes the relevant routine that activates and takes a reading from the specified sensor.
         # If the specified "boundary" has been breached the Sensor's Triggered attribute gets set to True.
@@ -293,16 +294,16 @@ class Sensor:
         print("Trigger Called")
 
 
-    def __init__(self, sensortype, boundary): 
+    def __init__(self, sensortype, boundary):
         self.config = self.sensorpins[sensortype]
         self.boundary = boundary
         self.lastRead = 0
-        if "trigger" in self.config: 
+        if "trigger" in self.config:
             print("trigger")
-            GPIO.setup(self.config["trigger"],GPIO.OUT)
-        GPIO.setup(self.config["echo"],GPIO.IN) 
+            GPIO.setup(self.config["trigger"], GPIO.OUT)
+        GPIO.setup(self.config["echo"], GPIO.IN)
 
-class Arrow(): 
+class Arrow():
 
 
     # Defines an object for controlling one of the LED arrows on the Motorshield.
@@ -311,39 +312,39 @@ class Arrow():
     # 1 = Arrow closest to the Motorshield's power pins and running clockwise round the board
     # 4 = Arrow closest to the motor pins.
 
-    arrowpins={1:33,2:35,3:37,4:36}
+    arrowpins={1:33, 2:35, 3:37, 4:36}
 
 
-    def __init__(self): 
-        GPIO.setup(self.pin,GPIO.OUT)
+    def __init__(self):
+        GPIO.setup(self.pin, GPIO.OUT)
         GPIO.output(self.pin, GPIO.LOW)
 
-    def on(self): 
-        GPIO.output(self.pin,GPIO.HIGH)
+    def on(self):
+        GPIO.output(self.pin, GPIO.HIGH)
 
-    def off(self): 
-        GPIO.output(self.pin,GPIO.LOW)
+    def off(self):
+        GPIO.output(self.pin, GPIO.LOW)
 
-class Buzzer: 
+class Buzzer:
 
 
-    def __init__(self): 
+    def __init__(self):
         self.buzzer=pigpio.pi()
         self.buzzer.set_mode(16, pigpio.OUTPUT)
 
-    def start(self, freq, duty): 
+    def start(self, freq, duty):
         self.buzzer.set_PWM_frequency(16, freq)
         self.buzzer.set_PWM_dutycycle(16, duty)
 
-    def stop(self): 
-        self.buzzer.set_PWM_dutycycle(16,0)
+    def stop(self):
+        self.buzzer.set_PWM_dutycycle(16, 0)
         self.buzzer.stop()
 
 
-class LED: 
+class LED:
 
 
-    def __init__(self): 
+    def __init__(self):
 
         # LED Strip configuration:
         # Number of LED pixels
@@ -366,23 +367,23 @@ class LED:
         self.strip.begin()
 
 
-    def set_color(self, led, red, green, blue): 
-        self.strip.setPixelColor(led, Color(red,green,blue))
+    def set_color(self, led, red, green, blue):
+        self.strip.setPixelColor(led, Color(red, green, blue))
         self.strip.show()
 
 
-class Button: 
+class Button:
 
 
-    def pb1_callback(self, channel): 
+    def pb1_callback(self, channel):
         print("Button 1 was pressed!")
 
 
-    def pb2_callback(self, channel): 
+    def pb2_callback(self, channel):
         print("Button 2 was pressed!")
 
 
-    def __init__(self, button1, button2): 
+    def __init__(self, button1, button2):
 
         pb1 = 37
         pb2 = 35
@@ -390,25 +391,25 @@ class Button:
         GPIO.setup(pb1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(pb2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         # Setup event on pin 37 and 35 rising edge
-        GPIO.add_event_detect(pb1,GPIO.RISING,callback=button1)
-        GPIO.add_event_detect(pb2,GPIO.RISING,callback=button2)
+        GPIO.add_event_detect(pb1, GPIO.RISING, callback=button1)
+        GPIO.add_event_detect(pb2, GPIO.RISING, callback=button2)
         # Run until someone presses enter
         message = input("Press enter to quit\n\n")
 
 
-    def __del__(self): 
+    def __del__(self):
         # Clean up
         GPIO.cleanup()
 
 
 # ---------------Main------------
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
     rgb=RGB()
     #buz=Buzzer()
     switch=button()
     rgb.set_color(1, 255, 0, 0)
-    while 1:
+    while 1: 
         test=switch.read_button(2)
         print(test)
         sleep(1)
