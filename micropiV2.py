@@ -120,7 +120,7 @@ class LinkedMotors:
             self.motor.append(i)
 
 
-    def forward(self,speed):
+    def forward(self, speed):
 
         # Starts the motor turning in its configured "forward" direction.
         # Arguments:
@@ -131,7 +131,7 @@ class LinkedMotors:
             self.motor[i].forward(speed)
 
 
-    def reverse(self,speed):
+    def reverse(self, speed):
 
         # Starts the motor turning in its configured "reverse" direction.
         # Arguments:
@@ -228,10 +228,10 @@ class Stepper:
         # Stops power to the motor
 
         print("Stop Stepper Motor")
-        GPIO.output(self.config['c1'],GPIO.LOW)
-        GPIO.output(self.config['c2'],GPIO.LOW)
-        GPIO.output(self.config['c3'],GPIO.LOW)
-        GPIO.output(self.config['c4'],GPIO.LOW)
+        GPIO.output(self.config['c1'], GPIO.LOW)
+        GPIO.output(self.config['c2'], GPIO.LOW)
+        GPIO.output(self.config['c3'], GPIO.LOW)
+        GPIO.output(self.config['c4'], GPIO.LOW)
 
 
 class Sensor:
@@ -311,9 +311,9 @@ class Arrow():
     # Defines an object for controlling one of the LED
     # arrows on the Motorshield.
     # Arguments:
-    # which = integer label for each arrow. 
+    # which = integer label for each arrow.
     # The arrow number if arbitrary starting with:
-    # 1 = Arrow closest to the Motorshield's power pins 
+    # 1 = Arrow closest to the Motorshield's power pins
     # and running clockwise round the board
     # 4 = Arrow closest to the motor pins.
 
@@ -321,13 +321,16 @@ class Arrow():
 
 
     def __init__(self):
+
         GPIO.setup(self.pin, GPIO.OUT)
         GPIO.output(self.pin, GPIO.LOW)
 
     def on(self):
+
         GPIO.output(self.pin, GPIO.HIGH)
 
     def off(self):
+
         GPIO.output(self.pin, GPIO.LOW)
 
 class Buzzer:
