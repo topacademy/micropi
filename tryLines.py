@@ -1,8 +1,5 @@
-import sys
-sys.path.append("/home/pi/GekoHat")
 import time
-from GekoHat import Motor
-from GekoHat import Sensor
+from micropi import Motor, Sensor
 
 m1 = Motor("MOTOR1", 1)
 m2 = Motor("MOTOR2", 1)

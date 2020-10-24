@@ -1,8 +1,4 @@
-import sys
-sys.path.append("/home/pi/GekoHat")
-
-from GekoHat import Motor
-from GekoHat import Sensor
+from micropi import Motor, Sensor
 import time
 import RPi.GPIO as GPIO
 

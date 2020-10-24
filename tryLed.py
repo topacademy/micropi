@@ -1,4 +1,4 @@
-from micropiV2 import LED
+from micropi import LED
 from time import sleep
 
 led = LED()

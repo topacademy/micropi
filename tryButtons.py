@@ -1,4 +1,4 @@
-from micropiV2 import Button
+from micropi import Button
 
 def button1(channel):
     print("Button 1 " + str(channel))

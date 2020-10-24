@@ -1,12 +1,12 @@
 import sys
 sys.path.append("/home/pi/GekoHat")
 
-import GekoHat
+from micropi import Motor
 import time
 import RPi.GPIO as GPIO
 
-m1 = GekoHat.Motor("MOTOR1", 1)
-m2 = GekoHat.Motor("MOTOR2", 1)
+m1 = Motor("MOTOR1", 1)
+m2 = Motor("MOTOR2", 1)
 
 m1.forward(60)
 m2.forward(60)
