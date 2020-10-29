@@ -33,10 +33,10 @@ class Motor:
     # identifying the pins to which the motor is connected.
     # config = int defines which pins control "forward" and "backward" movement
 
-    motorpins = {"MOTOR4": {"config": {1: {"e": 32, "f": 24, "r": 26}, 2: {"e": 32, "f": 26, "r": 24}}, "arrow": 1},
-                 "MOTOR3": {"config": {1: {"e": 19, "f": 21, "r": 23}, 2: {"e": 19, "f": 23, "r": 21}}, "arrow": 2},
-                 "MOTOR2": {"config": {1: {"e": 22, "f": 18, "r": 16}, 2: {"e": 22, "f": 16, "r": 18}}, "arrow": 3},
-                 "MOTOR1": {"config": {1: {"e": 11, "f": 15, "r": 13}, 2: {"e": 11, "f": 13, "r": 15}}, "arrow": 4}}
+    motorpins = {"MOTOR4": {"config": {1: {"e": 12, "f": 8, "r": 7}, 2: {"e": 12, "f": 7, "r": 8}}, "arrow": 1},
+                 "MOTOR3": {"config": {1: {"e": 21, "f": 9, "r": 11}, 2: {"e": 21, "f": 11, "r": 9}}, "arrow": 2},
+                 "MOTOR2": {"config": {1: {"e": 25, "f": 24, "r": 23}, 2: {"e": 25, "f": 23, "r": 24}}, "arrow": 3},
+                 "MOTOR1": {"config": {1: {"e": 17, "f": 22, "r": 27}, 2: {"e": 17, "f": 27, "r": 22}}, "arrow": 4}}
 
     def __init__(self, motor, config):
 
@@ -156,23 +156,25 @@ class Stepper:
     # Arguments:
     # motor = stepper motor
 
-    stepperpins = {"STEPPER1": {"en1": 11, "en2": 22, "c1": 13, "c2": 15, "c3": 18, "c4": 16},
-                   "STEPPER2": {"en1": 19, "en2": 32, "c1": 21, "c2": 23, "c3": 24, "c4": 26}}
+    stepperpins = {"STEPPER1":{"en1": 17, "en2": 25, "c1": 27, "c2": 22, "c3": 24, "c4": 23},
+                   "STEPPER2":{"en1": 21, "en2": 12, "c1": 9, "c2": 11, "c3": 8, "c4": 7}}
 
     def __init__(self, motor):
         self.config = self.stepperpins[motor]
-        GPIO.setup(self.config["en1"], GPIO.OUT)
-        GPIO.setup(self.config["en2"], GPIO.OUT)
-        GPIO.setup(self.config["c1"], GPIO.OUT)
-        GPIO.setup(self.config["c2"], GPIO.OUT)
-        GPIO.setup(self.config["c3"], GPIO.OUT)
-        GPIO.setup(self.config["c4"], GPIO.OUT)
         GPIO.output(self.config["en1"], GPIO.HIGH)
         GPIO.output(self.config["en2"], GPIO.HIGH)
         GPIO.output(self.config["c1"], GPIO.LOW)
         GPIO.output(self.config["c2"], GPIO.LOW)
         GPIO.output(self.config["c3"], GPIO.LOW)
         GPIO.output(self.config["c4"], GPIO.LOW)
+
+        GPIO.output(self.config["en1"], GPIO.HIGH)
+        GPIO.output(self.config["en2"], GPIO.HIGH)
+        GPIO.output(self.config["c1"], GPIO.LOW)
+        GPIO.output(self.config["c2"], GPIO.LOW)
+        GPIO.output(self.config["c3"], GPIO.LOW)
+        GPIO.output(self.config["c4"], GPIO.LOW)
+
 
     def setStep(self, w1, w2, w3, w4):
 
@@ -273,8 +275,8 @@ class Sensor:
         else:
             self.Triggered = False
 
-        sensorpins = {"IR1": {"echo": 7, "check": iRCheck}, "IR2": {"echo": 12, "check": iRCheck},
-                      "ULTRASONIC": {"trigger": 29, "echo": 31, "check": sonicCheck}}
+    sensorpins = {"IR1":{"echo":4,"check":iRCheck}, "IR2":{"echo":18, "check":iRCheck},
+                      "ULTRASONIC":{"trigger": 5, "echo": 6, "check":sonicCheck}}
 
     def trigger(self):
 
