@@ -2,28 +2,24 @@
 #********BEFORE RUNNING THIS, MUST sudo pigpiod !!******
 #Can automate this with sudo systemctl enable pigpiod (or disable)
 
-import sys
-sys.path.append("/home/pi/MotorShield")
-
-import pigpio
-import PiMotor
+from micropi import Motor, LinkedMotors
 import time
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
 from rpi_ws281x import PixelStrip, Color
 import argparse
 
 #First section:test stepper motor functions
 
-m1 = PiMotor.Motor("MOTOR1", 1)
-m2 = PiMotor.Motor("MOTOR2", 1)
+m1 = Motor("MOTOR1", 1)
+m2 = Motor("MOTOR2", 1)
 #m = PiMotor.Stepper("STEPPER2")
-motorAll = PiMotor.LinkedMotors(m1,m2)
+motorAll = LinkedMotors(m1, m2)
 
 # LED strip configuration:
 LED_COUNT = 4        # Number of LED pixels.
-LED_PIN = 21          # GPIO pin connected to the pixels (18 uses PWM!).
-# LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
+#LED_PIN = 21          # GPIO pin connected to the pixels (18 uses PWM!).
+LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
 LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_DMA = 10          # DMA channel to use for generating signal (try 10)
 LED_BRIGHTNESS = 100  # Set to 0 for darkest and 255 for brightest
@@ -83,12 +79,12 @@ time.sleep(2)
 #	time.sleep(0.3)
 
 # Full speed forward, half speed reverse
-motorAll.forward(100)
-time.sleep(20)
+motorAll.forward(50)
+time.sleep(3)
 motorAll.stop()
 time.sleep(1)
 motorAll.reverse(50)
-time.sleep(20)
+time.sleep(3)
 motorAll.stop()
-#Reset ports used by motor program back to input mode
-GPIO.cleanup()
+# Reset ports used by motor program back to input mode
+# GPIO.cleanup()

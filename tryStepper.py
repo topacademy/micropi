@@ -2,19 +2,15 @@
 #********BEFORE RUNNING THIS, MUST sudo pigpiod !!******
 #Can automate this with sudo systemctl enable pigpiod (or disable)
 
-import sys
-sys.path.append("/home/pi/MotorShield")
-
-#import pigpio
-import PiMotor
+import micropi
 import time
 import RPi.GPIO as GPIO
 
 #First section:test stepper motor functions
 
-#m1 = PiMotor.Motor("MOTOR1", 1)
-#m2 = PiMotor.Motor("MOTOR2", 1)
-m = PiMotor.Stepper("STEPPER2")
+#m1 = micropi.Motor("MOTOR1", 1)
+#m2 = micropi.Motor("MOTOR2", 1)
+m = micropi.Stepper("STEPPER2")
 #motorAll = PiMotor.LinkedMotors(m1,m2)
 
 # Rotate Stepper 1 0.004 = step time, 200 = number of steps

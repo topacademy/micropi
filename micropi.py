@@ -399,12 +399,10 @@ class Button:
 
     def __init__(self, button1, button2):
 
-        # GPIO.setmode(GPIO.BOARD)
-        # pb1 = 37
-        # pb2 = 35
+        # GPIO.setmode(GPIO.BCM)
         pb1 = 26
         pb2 = 19
-        # Set pin 37 and 35 to be an input pin and
+        # Set pin 26 and 19 to be an input pin and
         # set initial value to be pulled down
         GPIO.setup(pb1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(pb2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -412,7 +410,7 @@ class Button:
         GPIO.add_event_detect(pb1, GPIO.RISING, callback=button1)
         GPIO.add_event_detect(pb2, GPIO.RISING, callback=button2)
         # Run until someone presses enter
-        message = input("Press enter to quit\n\n")
+        # message = input("Press enter to quit\n\n")
 
     def __del__(self):
         # Clean up
@@ -423,4 +421,4 @@ class Button:
 # ---------------Main------------
 
 if __name__ == "__main__":
-    print("Welcome to microPi")
+    print("Welcome to the microPi's library")
