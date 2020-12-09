@@ -357,6 +357,7 @@ class  OLED:
         self.image = Image.new('1', (self.displayWidth, self.displayHeight))  # create graphics library image buffer
         self.draw = ImageDraw.Draw(self.image)  # create drawing object
         self.font = ImageFont.load_default()  # load and set default font
+        self.line = ["","","",""]
 
     # def text(self, str, line):
     #     self.oled.text(str, line)
@@ -365,25 +366,45 @@ class  OLED:
 
         self.display.begin()
         self.display.clear()
+        self.draw.rectangle((0,0,127,63), outline=0, fill=0)
         self.display.display()
 
     def stats(self):
 
-        cmd = "hostname -I | cut -d\' \' -f1"
-        IP = subprocess.check_output(cmd, shell = True ).decode('ASCII')
+#        cmd = "hostname -I | cut -d\' \' -f1"
+#        IP = subprocess.check_output(cmd, shell = True ).decode('ASCII')
+        IP = "IP:" + self.get_ip_address()
+        self.setline(0,IP)
         cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
         CPU = subprocess.check_output(cmd, shell = True ).decode('ASCII')
+        self.setline(1,CPU)
         cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
         MemUsage = subprocess.check_output(cmd, shell = True ).decode('ASCII')
+        self.setline(2,MemUsage)
         cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
         Disk = subprocess.check_output(cmd, shell = True ).decode('ASCII')
+        self.setline(3,Disk)
 
-        self.draw.text((0,0), "IP: " + IP + CPU + "\n" + MemUsage + "\n" + Disk, font=self.font, fill=255) 
+#        self.draw.text((0,0), "IP: " + IP + CPU + "\n" + MemUsage + "\n" + Disk, font=self.font, fill=255) 
 
 
-        self.display.image(self.image)
-        self.display.display()
+#        self.display.image(self.image)
+#        self.display.display()
 
+    def setline(self, line_number, str):
+        if line_number >= 0 and line_number <= 3:
+            self.clear()
+            self.line[line_number] = str.rstrip("\n")
+            self.draw.text((0,0), self.line[0] + "\n" + self.line[1] + "\n" + self.line[2] + "\n"+ self.line[3], font=self.font, fill=255)
+            self.display.image(self.image)
+            self.display.display()
+
+    def get_ip_address(self):
+        ip = "0.0.0.0"
+        while len(ip) < 8:
+            cmd = "hostname -I"
+            ip = subprocess.check_output(cmd, shell = True ).decode('ASCII') 
+        return ip
 
     def __del__(self):                                                                                                          # Clean up                                                                                                              GPIO.cleanup() 
         # GPIO.cleanup()
