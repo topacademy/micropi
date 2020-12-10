@@ -1,4 +1,4 @@
-# Pi-Guru
+# micro:Pi
 micro:Pi Driver
 Object names
 ------------
