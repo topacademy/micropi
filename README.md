@@ -1,5 +1,5 @@
 # micro:Pi
-micro:Pi Driver
+micro:Pi Library
 Object names
 ------------
 btn1
