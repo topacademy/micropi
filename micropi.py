@@ -7,9 +7,6 @@
 import RPi.GPIO as GPIO
 import pigpio
 from rpi_ws281x import PixelStrip, Color
-# from board import SCL, SDA
-# import busio2 as busio
-# from oled_text import OledText
 import Adafruit_SSD1306
 from PIL import Image, ImageDraw, ImageFont
 import subprocess
@@ -359,8 +356,6 @@ class  OLED:
         self.font = ImageFont.load_default()  # load and set default font
         self.line = ["","","",""]
 
-    # def text(self, str, line):
-    #     self.oled.text(str, line)
 
     def clear(self):
 
@@ -371,8 +366,6 @@ class  OLED:
 
     def stats(self):
 
-#        cmd = "hostname -I | cut -d\' \' -f1"
-#        IP = subprocess.check_output(cmd, shell = True ).decode('ASCII')
         IP = "IP:" + self.get_ip_address()
         self.setline(0,IP)
         cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
@@ -385,13 +378,9 @@ class  OLED:
         Disk = subprocess.check_output(cmd, shell = True ).decode('ASCII')
         self.setline(3,Disk)
 
-#        self.draw.text((0,0), "IP: " + IP + CPU + "\n" + MemUsage + "\n" + Disk, font=self.font, fill=255) 
-
-
-#        self.display.image(self.image)
-#        self.display.display()
 
     def setline(self, line_number, str):
+
         if line_number >= 0 and line_number <= 3:
             self.clear()
             self.line[line_number] = str.rstrip("\n")
@@ -400,6 +389,7 @@ class  OLED:
             self.display.display()
 
     def get_ip_address(self):
+
         ip = "0.0.0.0"
         while len(ip) < 8:
             cmd = "hostname -I"

@@ -3,8 +3,22 @@ from time import sleep
 
 led = LED()
 
-for i in range(4):
-    led.set_color(i,i*63,255,255)
-    sleep(.5)
-    led.set_color(i, 0,0,0)
+led.set_color(0,255,0,0)
+sleep(1)
+led.set_color(0,0,0,0)
 
+led.set_color(1,0,255,0)
+sleep(1)
+led.set_color(1,0,0,0)
+
+led.set_color(2,0,0,255)
+sleep(1)
+led.set_color(2,0,0,0)
+
+led.set_color(3,255,255,255)
+sleep(1)
+led.set_color(3,0,0,0)
+
+led.set_color(0,0,128,128)
+sleep(1)
+led.set_color(0,0,0,0)

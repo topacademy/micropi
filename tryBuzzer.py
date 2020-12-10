@@ -1,25 +1,21 @@
 from micropi import Buzzer
 from time import sleep
 
-b = Buzzer()
-#b.start(1000,128)
-#sleep(0.3)
+buzzer = Buzzer()
 
-# b.stop()
-
-b.start(294*2,128)
+buzzer.start(588,128)
 sleep(0.3)
 
-b.start(329*2,128)
+buzzer.start(658,128)
 sleep(0.3)
 
-b.start(523*2,128)
+buzzer.start(1046,128)
 sleep(0.3)
 
-b.start(261*2,128)
+buzzer.start(522,128)
 sleep(0.3)
 
-b.start(392*2,128)
+buzzer.start(784,128)
 sleep(0.3)
 
-b.stop()
+buzzer.stop()

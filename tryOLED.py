@@ -1,5 +1,5 @@
 from micropi import OLED
 
-o = OLED()
+oled = OLED()
 
-o.stats()
+oled.setline(1, "Hello World")

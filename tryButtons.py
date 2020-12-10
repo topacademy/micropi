@@ -7,18 +7,18 @@ button2_pressed = False
 def button1(channel):
     global button1_pressed
     button1_pressed = True
-    print("Button PB1 pressed " + str(channel))
+    print("Button PB1 pressed ")
 
 def button2(channel):
     global button2_pressed
     button2_pressed = True
-    print("Button PB2 pressed, so exiting program " + str(channel))
+    print("Button PB2 pressed, so exiting program ")
 
 def main():
     global button1_pressed
     global button2_pressed
 
-    b = Button(button1, button2)
+    button = Button(button1, button2)
     print("Press Button 1 to test, press Button 2 to exit")
 
     while not button2_pressed:
