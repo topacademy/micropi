@@ -1,13 +1,11 @@
-# Pi-Guru
-micro:Pi Driver
+# micro:Pi
+micro:Pi Library
 Object names
 ------------
-btn1
-btn2
-buzz
+buzzer
 motor1
 motor2
-pixel
+led
 stepper
 sonic
 line1
