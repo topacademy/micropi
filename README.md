@@ -2,7 +2,7 @@
 micro:Pi Library
 Object names
 ------------
-buzz
+buzzer
 motor1
 motor2
 led
