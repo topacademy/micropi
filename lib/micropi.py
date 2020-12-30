@@ -401,40 +401,35 @@ class OLED:
         # GPIO.cleanup()
         pass
 
-class PB1:
+class Buttons:
 
-    def isButtonPressed(this):
-        pb1 = 26
-        GPIO.setup(pb1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        return GPIO.input(pb1)
-
-
-class PB2:
-
-    def isButtonPressed(this):
-        pb2 = 19
-        GPIO.setup(pb2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        return GPIO.input(pb2)
-
-class Button:
-
-    def __init__(self, button1, button2):
+    def __init__(self):
 
         # GPIO.setmode(GPIO.BCM)
-        pb1 = 26
-        pb2 = 19
+        self.pb1 = 26
+        self.pb2 = 19
 
         # Set pin 26 and 19 to be an input pin and
         # set initial value to be pulled down
-        GPIO.setup(pb1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.setup(pb2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        # Setup event on pin 37 and 35 rising edge
-        GPIO.add_event_detect(pb1, GPIO.RISING, callback=button1)
-        GPIO.add_event_detect(pb2, GPIO.RISING, callback=button2)
+        GPIO.setup(self.pb1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(self.pb2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-        def __del__(self):
+    def setcallback(self, button1, button2):
+
+        # Setup event on pin 37 and 35 rising edge
+        GPIO.add_event_detect(self.pb1, GPIO.RISING, callback=button1)
+        GPIO.add_event_detect(self.pb2, GPIO.RISING, callback=button2)
+
+    def isPB1Pressed(self):
+        return GPIO.input(self.pb1) == 0
+
+    def isPB2Pressed(self):
+        return GPIO.input(self.pb2) == 0
+
+
+    def __del__(self):
         # GPIO.cleanup()
-            pass
+        pass
 
 
 # ---------------Main------------
