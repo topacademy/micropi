@@ -187,7 +187,8 @@ class Stepper:
     def forward(self, delay, steps):
 
         # Rotate Stepper motor in forward direction
-        # delay = time between steps (milliseconds)                                                                                                                            Arguments:                                                                                                              delay = time between steps in miliseconds
+        # delay = time between steps (milliseconds)
+        # Arguments: delay = time between steps in miliseconds
         # steps = Number of Steps
 
         for i in range(0, steps):
@@ -340,7 +341,7 @@ class LED:
         self.strip.show()
 
 
-class  OLED:
+class OLED:
 
     def __init__(self):
         # self.i2c = busio.I2C(SCL, SDA)
@@ -393,26 +394,36 @@ class  OLED:
         ip = "0.0.0.0"
         while len(ip) < 8:
             cmd = "hostname -I"
-            ip = subprocess.check_output(cmd, shell = True ).decode('ASCII') 
+            ip = subprocess.check_output(cmd, shell = True ).decode('ASCII')
         return ip
 
-    def __del__(self):                                                                                                          # Clean up                                                                                                              GPIO.cleanup() 
+    def __del__(self):
         # GPIO.cleanup()
         pass
 
+class PB1:
+
+    def isButtonPressed(this):
+        pb1 = 26
+        GPIO.setup(pb1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        return GPIO.input(pb1)
+
+
+class PB2:
+
+    def isButtonPressed(this):
+        pb2 = 19
+        GPIO.setup(pb2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        return GPIO.input(pb2)
+
 class Button:
-
-    def pb1_callback(self, channel):
-        print("Button 1 was pressed!")
-
-    def pb2_callback(self, channel):
-        print("Button 2 was pressed!")
 
     def __init__(self, button1, button2):
 
         # GPIO.setmode(GPIO.BCM)
         pb1 = 26
         pb2 = 19
+
         # Set pin 26 and 19 to be an input pin and
         # set initial value to be pulled down
         GPIO.setup(pb1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -420,13 +431,10 @@ class Button:
         # Setup event on pin 37 and 35 rising edge
         GPIO.add_event_detect(pb1, GPIO.RISING, callback=button1)
         GPIO.add_event_detect(pb2, GPIO.RISING, callback=button2)
-        # Run until someone presses enter
-        # message = input("Press enter to quit\n\n")
 
-    def __del__(self):
-        # Clean up
+        def __del__(self):
         # GPIO.cleanup()
-        pass
+            pass
 
 
 # ---------------Main------------
