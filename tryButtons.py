@@ -1,4 +1,4 @@
-from micropi import Button
+from micropi import Buttons
 from time import sleep
 
 button1_pressed = False
@@ -18,7 +18,8 @@ def main():
     global button1_pressed
     global button2_pressed
 
-    button = Button(button1, button2)
+    buttons = Buttons()
+    buttons.setcallback(button1, button2)
     print("Press Button 1 to test, press Button 2 to exit")
 
     while not button2_pressed:

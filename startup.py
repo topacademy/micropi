@@ -1,27 +1,10 @@
-from micropi import OLED, Button, Buzzer, LED
+from micropi import OLED, Buzzer, LED
 from time import sleep
 
-button1_pressed = False
-button2_pressed = False
-
-def button1(channel):
-    global button1_pressed
-    button1_pressed = True
-    print("Button PB1 pressed " + str(channel))
-
-def button2(channel):
-    global button2_pressed
-    button2_pressed = True
-    print("Button PB2 pressed " + str(channel))
-
 def main():
-    global button1_pressed
-    global button2_pressed
 
     oled = OLED()
     oled.stats()
-
-    button = Button(button1, button2)
     buzzer =  Buzzer()
     led =  LED()
 

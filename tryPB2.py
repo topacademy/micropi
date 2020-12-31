@@ -1,8 +1,8 @@
-from micropi import PB2
+from micropi import Buttons
 from time import sleep
 
-pb2 = PB2()
+pb2 = Buttons()
 
 while True:
-    print(PB2.isButtonPressed(pb2))
+    print(pb2.isPB2Pressed())
     sleep(0.2)
