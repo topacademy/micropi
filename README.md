@@ -1,15 +1,4 @@
 # micro:Pi
-micro:Pi Library
-Object names
-------------
-buzzer
-motor1
-motor2
-led
-stepper
-sonic
-line1
-line2
-oled
-irr
-i2c
+micro:Pi Library \n
+
+The micro:Pi is equipped with on-board sensors and expansion sockets that support external components. There are no messy-wires to connect. It is ideal for building robots, home automation, and computer programming. It comes with the operating pre-installed and it works straight out of the box.
