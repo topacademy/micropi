@@ -379,6 +379,18 @@ class OLED:
         Disk = subprocess.check_output(cmd, shell = True ).decode('ASCII')
         self.setline(3,Disk)
 
+    def prestats(self):
+
+        line0 = "searching for"
+        line1 = "WiFI(2.4GHz)......"
+        line2 = "check hotspot is on"
+        line3 = "check instructions"
+        self.setline(0, line0)
+        self.setline(1, line1)
+        self.setline(2, line2)
+        self.setline(3, line3)
+        IP = "IP:" + self.get_ip_address()
+
 
     def setline(self, line_number, str):
 
