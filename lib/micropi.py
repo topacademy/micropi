@@ -339,11 +339,13 @@ class LED:
     def get_bit_number(self, value):
         if value <=0:
             return 0
+
         power = 128
         bit = 7
         while value < power:
            power = power // 2
            bit = bit -1
+
         return bit
 
     def set_color(self, led, red, green, blue):
@@ -351,7 +353,7 @@ class LED:
         r = values[self.get_bit_number(red%256)]
         g = values[self.get_bit_number(green%256)]
         b = values[self.get_bit_number(blue%256)]
-        self.strip.setPixelColor(led %4, Color(r, g, b))
+        self.strip.setPixelColor(led % 4, Color(r, g, b))
         self.strip.show()
 
 
