@@ -303,13 +303,23 @@ class Buzzer:
         self.buzzer = pigpio.pi()
         self.buzzer.set_mode(16, pigpio.OUTPUT)
 
-    def start(self, freq, duty):
+    def __del__(self):
+        self.buzzer.stop()
+
+    def start(self, freq, duty = 128):
         self.buzzer.set_PWM_frequency(16, freq)
         self.buzzer.set_PWM_dutycycle(16, duty)
 
     def stop(self):
         self.buzzer.set_PWM_dutycycle(16, 0)
-        self.buzzer.stop()
+        # self.buzzer.stop()
+
+    def tone(self, f):
+
+       frequencies = [10, 20, 40, 60, 80, 120, 170, 220, 280, 350, 420, 640, 690, 920, 1500, 2000]
+       self.buzzer.set_PWM_frequency(16,frequencies[f%16])
+       self.buzzer.set_PWM_dutycycle(16,128)
+
 
 
 class LED:
