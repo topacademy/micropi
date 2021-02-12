@@ -35,7 +35,7 @@ The micro:Pi is the ultimate device for developing skills and knowledge about th
 ![picture](images/resources-002.jpg)
 
 <div align="center">
-  <a href="https://topacademy.com/micropi">
+  <a href="/images/getting_started_guide_colored.pdf">
     <img src="/images/getting-started.png">
     </a>
 </div>
