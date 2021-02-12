@@ -16,4 +16,8 @@ The micro:Pi is the ultimate device for developing skills and knowledge about th
 
 ![picture](images/specification-text.png)
 
+![picture](image/applications.jpg)
+
+![picture](image/application-text.png)
+
 
