@@ -41,8 +41,8 @@ The micro:Pi is the ultimate device for developing skills and knowledge about th
 </div>
 
 <div align="center">
-  <a href="https://drive.google.com/drive/folders/1cm9vUXON1M-XbPJnsReMUOJKaba6pluX?usp=sharing">
-    <img src="/images/images.png" alt="download latest sd card image">
+  <a href="/images/getting_started_guide_colored.pdf">
+    <img src="/images/getting-started.png" alt="getting started guide">
   </a>
 </div>
 
