@@ -50,6 +50,19 @@ The micro:Pi is the ultimate device for developing skills and knowledge about th
 
 ![picture](images/win32-disk-imager_200.jpg)
 
+<div align="center">
+  <a href="#"
+    <img src="/images/sd-card-formatter_200.jpg" alt="download micro-sd card image">
+  </a>
+</div>
+
+<div align="center">
+  <a href="#"                                                                   
+    <img src="/images/win32-disk-imager_200.jpg" alt="download micro-sd card image">
+  </a>
+</div>
+
+
 ![picture](images/kit-content.png)
 
 ![picture](images/kit-content-002.jpg)
