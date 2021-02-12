@@ -40,10 +40,6 @@ The micro:Pi is the ultimate device for developing skills and knowledge about th
 
 [![MICROPI - INTRODUCTION](https://i9.ytimg.com/vi/SRSukb-_Nbs/mq1.jpg?sqp=COihmoEG&rs=AOn4CLBXKY8GI5scXi3VHYbgs-p8lDpfzg)](https://youtu.be/SRSukb-_Nbs)
 
-<p align="center">
-  <image width="800" src="https://youtu.be/SRSukb-_Nbs">
-</p>
-
 <div align="center">
-  <a href="https://youtu.be/SRSukb-_Nbs"><img src="https://i9.ytimg.com/vi/SRSukb-_Nbs/mq1.jpg" alt="IMAGE ALT TEXT"></a>
+  <a href="https://youtu.be/SRSukb-_Nbs"><img width="800" src="https://i9.ytimg.com/vi/SRSukb-_Nbs/mq1.jpg" alt="IMAGE ALT TEXT"></a>
 </div>
