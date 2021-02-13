@@ -40,15 +40,15 @@ The micro:Pi is the ultimate device for developing skills and knowledge about th
   </a>
 </div>
 
-<div align="center">
-  <a href="https://drive.google.com/drive/folders/1cm9vUXON1M-XbPJnsReMUOJKaba6pluX?usp=sharing">
-    <img src="/images/sd-card-burn.png" alt="download and burn  micro-sd card image">
-  </a>
-</div>
-
 ![picture](images/kit-content.png)
 
 ![picture](images/kit-content-002.jpg)
+
+<div align="center">
+  <a href="https://drive.google.com/drive/folders/1cm9vUXON1M-XbPJnsReMUOJKaba6pluX?usp=sharing">
+    <img src="/images/sd-card-burn.png" alt="download and burn micro-sd card image">
+  </a>
+</div>
 
 <div align="center">
   <a href="https://youtu.be/SRSukb-_Nbs"><img width="800" src="/images/mq1.jpg" alt="micro:pi introduction video"></a>
